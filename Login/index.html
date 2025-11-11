@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>23 Experiencias | Login & Register</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Logo y botón volver -->
+    <div class="header">
+      <img src="../Login/23.png" alt="23 Experiencias" class="logo">
+      <a href="../index.html" class="btn-volver">⮌ Volver a Inicio</a>
+    </div>
+
+    <!-- Formulario -->
+    <div class="form-container" id="form-container">
+      
+      <!-- LOGIN -->
+      <form id="loginForm" action="login.php" method="POST" class="form active">
+        <h2> Inicia Sesión</h2>
+        <input type="text" name="username" placeholder="Usuario" required>
+        <input type="email" name="email" placeholder="Correo" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+        <p class="toggle">¿No tienes cuenta? <span onclick="toggleForm()">Regístrate</span></p>
+      </form>
+
+      <!-- REGISTER -->
+      <form id="registerForm" action="register.php" method="POST" class="form">
+        <h2> Crear Cuenta</h2>
+        <input type="text" name="username" placeholder="Usuario" required>
+        <input type="email" name="email" placeholder="Correo" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Registrar</button>
+        <p class="toggle">¿Ya tienes cuenta? <span onclick="toggleForm()">Inicia Sesión</span></p>
+      </form>
+
+    </div>
+  </div>
+  <!--cerrar sesion-->
+  <div id="toast" class="toast"></div>
+
+</body>
+</html>

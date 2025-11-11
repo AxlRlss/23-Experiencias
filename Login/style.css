@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('../Fondo.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor general */
+.container {
+  background: rgba(0,0,0,0.65);
+  border-radius: 20px;
+  padding: 30px;
+  width: 380px;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(255,120,0,0.6);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.logo { width: 50px; }
+.btn-volver {
+  color: #ff6600;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.btn-volver:hover { color: #ff9900; }
+
+/* Formularios */
+.form { display: none; flex-direction: column; gap: 15px; }
+.form.active { display: flex; }
+h2 { text-align: center; margin-bottom: 10px; }
+
+/* Inputs */
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background: #222;
+  color: #fff;
+}
+
+/* Botones */
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #ff6600, #ff9900);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+button:hover { transform: scale(1.05); }
+
+/* Toggle */
+.toggle { text-align: center; font-size: 14px; }
+.toggle span {
+  color: #ff9900;
+  cursor: pointer;
+  font-weight: bold;
+}
+.toggle span:hover { text-decoration: underline; }
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+                                                                /*cerrar sesion*/
+/* Toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+  z-index: 9999;
+  font-size: 14px;
+}
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.toast--ok { border-left: 6px solid #ff6b00; }      /* naranja 23E */
+.toast--warn { border-left: 6px solid #ffb000; }
