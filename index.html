@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="23 Experiencias: Turismo temático en cafeterías con cultura japonesa, anime y literatura en Córdoba, Argentina." />
+  <title>23 Experiencias - Turismo Temático</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="/css/map.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<!-- Facebook SDK -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/es_LA/sdk.js"></script>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="/img/Picsart_25-10-03_03-03-59-222.png" alt="Logo 23 Experiencias">
+      <h1>23 Experiencias</h1>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#experiencias">Experiencias</a></li>
+        <li><a href="#paquetes">Paquetes</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="productos/index.html">Productos</a></li>
+        <li><a href="Calendario/Calendario.html">Calendario</a></li>
+
+      </ul>
+    </nav>
+  </header>
+ <!-- <svg width="100%" height="95%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" overflow="auto" shape-rendering="auto" fill="#f54d0b9d">
+        <defs>
+         <path id="wavepath" d="M 0 2000 0 500 Q 52.5 388 105 500 t 105 0 105 0 105 0 105 0 105 0 105 0 105 0 105 0 105 0 105 0 105 0  v1000 z"/>
+         <path id="motionpath" d="M -210 0 0 0" /> 
+        </defs>
+        <g >
+         <use xlink:href="#wavepath" y="274" fill="#f54d0b9d">
+         <animateMotion
+          dur="5s"
+          repeatCount="indefinite">
+          <mpath xlink:href="#motionpath" />
+         </animateMotion>
+         </use>
+        </g>
+      </svg> -->
+  <main>
+    
+                                                <!-- HOME (Presentación + CTA) -->
+<section id="home-cta" class="seccion home-cta">
+  <h2>Sumérgete en 23 Experiencias Únicas</h2>
+  <p>
+    Descubre la magia de recorrer <strong>23 cafeterías temáticas</strong> inspiradas en la cultura japonesa, 
+    el anime, la literatura y la pastelería artesanal. Vive un recorrido sensorial que combina aromas, sabores, 
+    historias y arte local. Conoce espacios donde cada detalle cuenta y cada taza es un mundo.
+  </p>
+  <a href="#experiencias" class="btn">Comienza tu viaje</a>
+  <a href="Login/index.html" class="btn-login">Iniciar Sesión</a>
+</section>
+                                      <!-- EXPERIENCIAS DESTACADAS -->
+<section id="experiencias" class="seccion experiencias">
+  <h2>Experiencias Destacadas</h2>
+  <br>
+  <div class="experiencias-grid">
+    <div class="exp-card">
+      <img src="img/cafe-ghibli.webp" alt="Café Ghibli">
+      <h3>Café Ghibli</h3>
+      <p>Un rincón inspirado en los mundos de Hayao Miyazaki, donde la decoración y los postres te transportan a sus películas.</p>
+    </div>
+    <div class="exp-card">
+      <img src="img/sakura-cafe.jpg" alt="Bibliocafé Sakura">
+      <h3>Bibliocafé Sakura</h3>
+      <p>Un espacio íntimo con estanterías llenas de manga y novelas japonesas, perfecto para leer acompañado de un matcha latte.</p>
+    </div>
+    <div class="exp-card">
+      <img src="img/pasteleria-kimono.jpg" alt="Pastelería Kimono">
+      <h3>Pastelería Kimono</h3>
+      <p>Pastelería artesanal con fusiones japonesas y francesas, en un ambiente cálido y acogedor.</p>
+    </div>
+  </div>
+</section>
+                                                                        <!--PAQUETES-->
+<section id="paquetes" class="paquetes-section">
+  <h2 class="titulo-seccion">Elegí tu paquete</h2>
+
+  <div class="paquetes-container">
+    <!-- PACK CLÁSICO -->
+    <div class="paquete">
+      <h3>Pack Clásico</h3>
+      <p>Visita a <strong>23 cafeterías seleccionadas</strong>, degustaciones, y actividades culturales únicas.</p>
+      <p class="stock">Stock disponible: <span id="stock-clasico">12</span></p>
+      <button class="btn-comprar" onclick="comprarPaquete('basico')">
+  Seleccionar
+</button>
+    </div>
+
+    <!-- PACK OTAKU PREMIUM -->
+    <div class="paquete">
+      <h3>Pack Otaku Premium</h3>
+      <p>Incluye <strong>23 visitas</strong>, merienda completa, souvenir exclusivo y experiencia cosplay. 📸</p>
+      <p>Box de café y todas las galletas 🍪🍪🍪🍪🍪🍪🍪🍪🍪 </p>
+      <p class="stock">Stock disponible: <span id="stock-otaku">8</span></p>
+      <button class="btn-comprar" onclick="comprarPaquete('otaku-premium')">
+  Seleccionar
+</button>
+    </div>
+
+    <!-- PACK LITERARIO -->
+    <div class="paquete">
+      <h3>Pack Literario</h3>
+      <p>Recorridos por cafeterías con enfoque en narrativa ✍️, lectura en vivo y autorxs invitadxs.</p> <br>
+      <p>!EXPLORA! <BR> Eventos gastronomicos/culturales, cervecerias, exposiciones de arte, comida callejera y mucho más</p>
+      <p class="stock">Stock disponible: <span id="stock-literario">10</span></p>
+      <button class="btn-comprar" onclick="comprarPaquete('literario')">
+  Seleccionar
+</button>
+
+    </div>
+  </div>
+</section> 
+
+<!--paquetes extras-->
+<div class="pack">
+  <img src="../experiencias/img/festival.jpg" alt="Pack Básico" class="img-pack">
+  <div class="info-pack">
+    <h2>Pack fiestero</h2>
+    <p>Disfruta de experiencias únicas con dj de especialidad y un recorrido tecno inolvidable.</p>
+    <button class="btn-comprar" data-pack="basico" onclick="comprarPaquete('Fiestero')">Seleccionar</button>
+  </div>
+</div>
+
+<div class="pack">
+  <img src="../experiencias/img/comic.jpg" alt="Pack Otaku Premium" class="img-pack">
+  <div class="info-pack">
+    <h2>Pack Comic</h2>
+    <p>Vive el Japón moderno con un recorrido temático, gastronomía y regalos exclusivos.</p>
+    <button class="btn-comprar" data-pack="Pack Libre" onclick="comprarPaquete('Comic')">Seleccionar</button>
+  </div>
+</div>
+
+<div class="pack">
+  <img src="../experiencias/img/feria-del-libro.jpeg" alt="Pack Libre" class="img-pack">
+  <div class="info-pack">
+    <h2>Pack Libre</h2>
+    <p>Sumérgete en la lectura mientras disfrutas de ambientes inspiradores y experiencias literarias.</p>
+    <button class="btn-comprar" data-pack="libre"onclick="comprarPaquete('Libre')">Seleccionar</button>
+  </div>
+</div>
+
+<!-- Overlay -->
+<div id="overlay-cargando">
+  <div class="loader"></div>
+  <p id="texto-overlay">Cargando tu experiencia...</p>
+</div>
+
+<!--paquetes extras-->
+                                                                        <!--PAQUETES-->
+
+   <!-- SECTION: Contacto -->
+<section id="contacto" class="contacto-section">
+  <h2 class="titulo-seccion">¿Hablamos?</h2>
+  <p class="contacto-descripcion">Queremos conocerte, escucharte y acompañarte en esta aventura cultural. <br> Dejanos tu mensaje y te responderemos a la brevedad 🌸</p>
+
+  <form class="formulario-contacto" onsubmit="enviarFormulario(); return false;">
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre..." required>
+
+    <label for="correo">Correo electrónico</label>
+    <input type="email" id="correo" name="correo" placeholder="tuemail@ejemplo.com" required>
+
+    <label for="mensaje">Mensaje</label>
+    <textarea id="mensaje" name="mensaje" rows="6" placeholder="¿Sobre qué te gustaría escribirnos? 😊" required></textarea>
+
+    <button type="submit" class="btn-enviar">Enviar mensaje</button>
+  </form>
+</section>
+
+                                                        <!-- QUIÉNES SOMOS -->
+<section id="quienes-somos" class="seccion-quienes">
+  <div class="quienes-wrapper">
+    <div class="quienes-texto">
+      <h2>Quiénes Somos</h2>
+      <p>
+        Somos <strong>23 Experiencias</strong>, una marca que nace del corazón de Córdoba, Argentina, con el deseo de fusionar <em>cultura japonesa, literatura, cafeterías temáticas</em> y el amor por los pequeños grandes momentos.
+      </p>
+      <p>
+        Creemos en los <strong>recuerdos que se saborean</strong>, en las conexiones que se tejen con un café en mano, y en la magia de descubrir el mundo desde una taza, una historia o un personaje.
+      </p>
+      <p>
+        Nuestro equipo está compuesto por creativos, gestores culturales, diseñadores, escritores, baristas soñadores y artistas del alma. Cada uno de nosotros tiene una sola misión: que vivas 23 experiencias... y quieras vivir muchas más.
+      </p>
+      <p class="frase-final">
+        Porque viajar también es sentarse, leer, compartir, y dejar que el mundo te abrace con dulzura.
+      </p>
+    </div>
+    <div class="quienes-img">
+      <img src="img/ilustración-de-equipo-23-experiencias.png" alt="Ilustración de equipo 23 Experiencias">
+    </div>
+  </div>
+</section>
+
+<!--Quienes Somos-->
+
+                                              <!-- BLOG / NOVEDADES -->
+<section id="blog" class="seccion blog">
+  <h2>Blog</h2>
+  <div class="galeria-grid">
+    <div class="galeria-item">
+      <img src="img/ByN/nuevo.jpeg" alt="Componentes">
+      <h3>Conoce las cafeterías</h3>
+      <p>Explorwmos a fondo las hermosas cafeterías de nuestro recorrido.</p>
+      <a href="componentes/componentes.html" class="btn">Leer más</a>
+    </div>
+    <div class="galeria-item">
+      <img src="img/ByN/evento litt.webp" alt="Evento literario">
+      <h3>Eventos y Novedades</h3>
+      <p>Un encuentro especial con escritores locales y degustación de blends exclusivos.</p>
+      <a href="#" class="btn">Leer más</a>
+    </div>
+  </div>
+  <!--Agrear botón para conocer a los las cafeterias que la conforman crear nueva página para ello-->
+</section>
+
+<!-- ARTISTAS EMERGENTES -->
+<section id="artistas" class="seccion artistas">
+  <h2>Artistas Emergentes</h2>
+  <div class="galeria-grid">
+    <div class="galeria-item">
+      <img src="img/Artistas/julietdaa2.jpg" alt="Julietdaa">
+      <h3>Julietdaa</h3>
+      <p>Soy Julietdaa, una artista apasionada y creativa con un amor profundo por la música desde pequeña. La melodía y la armonía han sido mi refugio y mi fuente de inspiración durante toda mi vida. </p>
+      <a href="https://www.youtube.com/@julietdaa" target="_blank" class="btn">YouTube</a>
+    </div>
+    <div class="galeria-item">
+      <img src="img/Artistas/channels4_banner.jpg" alt="MangaSketch">
+      <h3>MangaSketch</h3>
+      <p>Ilustrador especializado en estilo manga, sus obras decoran varias de nuestras cafeterías.</p>
+      <a href="https://youtube.com/mangasketch" target="_blank" class="btn">YouTube</a>
+    </div>
+     <div class="galeria-item">
+      <img src="img/Artistas/wicko.jpg" alt="Wicko">
+      <h3>MWicko MC</h3>
+      <p>Musica y Gameplays.</p>
+      <a href="https://www.youtube.com/@WickoMusicAG" target="_blank" class="btn">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!--POR EL MUNDO-->
+
+
+                                                          <!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-contenido">
+    <p class="footer-marca">© 2025 | 23 Experiencias. Todos los derechos reservados.</p>
+    <div class="footer-redes">
+      <a href="https://www.tiktok.com/@23_experiencias" target="_blank" aria-label="TikTok">
+        <img src="img/iconos/tiktok.svg" alt="TikTok">
+      </a>
+      <a href="https://www.instagram.com/23_experiencias/" target="_blank" aria-label="Instagram">
+        <img src="img/iconos/instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61581897603546" target="_blank" aria-label="Facebook">
+        <img src="img/iconos/facebook.svg" alt="Facebook">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Overlay de carga -->
+<div id="overlay-cargando">
+  <div class="loader"></div>
+  <p>Cargando tu experiencia...</p>
+</div>
+
+<script>
+function comprarPaquete(tipo) {
+  const overlay = document.getElementById('overlay-cargando');
+  if (overlay) overlay.classList.add('activo');
+  setTimeout(() => {
+    window.location.href = `experiencias/pack-${tipo}.html`;
+  }, 1500);
+}
+</script>
+
+<!--MAPA-->
+
+</body>
+
+</html>

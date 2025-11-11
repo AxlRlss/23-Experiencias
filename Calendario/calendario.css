@@ -1,0 +1,182 @@
+:root{
+  --bg:#0d0d11;
+  --panel:#16161d;
+  --panel-2:#1f2028;
+  --muted:#b3a39a;
+  --text:#f4f6fb;
+  --brand:#7cc3ff;
+  --brand-2:#ff9ed1;
+  --radius:16px;
+  --shadow: 0 12px 30px rgba(253, 135, 0, 0.5);
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family:Inter, "Segoe UI", Roboto, sans-serif; background: radial-gradient(circle at 10% 10%, #0f1115, #08090b 70%); color:var(--text)}
+.wrap{width:min(1100px,96%); margin:28px auto}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel-2)); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.03);}
+
+/* Title & controls */
+.title{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.title h1 {margin: 0; font-size: clamp(22px, 2.2vw, 32px); background: linear-gradient(90deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;}
+.controls{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+button, select, a.brand{background:var(--glass); color:var(--text); border:1px solid rgba(255,255,255,0.04); padding:10px 12px; border-radius:12px; cursor:pointer; transition:all .18s}
+button.icon{width:40px; height:40px; display:grid; place-items:center; font-size:18px}
+a.brand{background:linear-gradient(90deg,var(--brand),var(--brand-2)); border:0; padding:10px 14px; text-decoration:none; font-weight:600}
+button:hover, select:hover, a.brand:hover{transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+
+/* legend */
+.legend{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0}
+.legend .item{display:flex; gap:8px; align-items:center; background:var(--panel-2); padding:8px 12px; border-radius:999px; font-size:13px}
+.legend .dot{width:12px;height:12px;border-radius:50%}
+
+/* AGENDA (siempre visible) */
+.agenda-view{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:12px; margin-bottom:16px; border:1px solid rgba(255,255,255,0.02)}
+.agenda-view h2{margin:0 0 8px 0; font-size:16px}
+.agenda-list{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+.agenda-list li{display:flex; gap:12px; align-items:center; justify-content:space-between; background:var(--panel); border-radius:10px; padding:10px; border:1px solid rgba(255,255,255,0.02); transition:transform .14s, background .14s}
+.agenda-list li:hover{transform:translateY(-4px)}
+.agenda-list .date{color:var(--brand); font-weight:600; min-width:60px}
+.agenda-list .title{flex:1; margin-left:8px}
+.agenda-list .spots{opacity:.8; font-size:13px}
+
+/* CALENDARIO */
+.calendar{display:grid; grid-template-rows:auto 1fr; gap:12px}
+.dow{display:grid; grid-template-columns:repeat(7,1fr); gap:6px; opacity:.85}
+.dow span{text-transform:uppercase; font-size:12px; color:var(--muted); text-align:center}
+.grid{display:grid; grid-template-columns:repeat(7,1fr); grid-auto-rows:120px; gap:8px}
+
+/* day card */
+.day{background:var(--panel-2); border-radius:12px; padding:8px; border:1px solid rgba(255,255,255,0.02); display:flex; flex-direction:column; transition:transform .12s, box-shadow .12s}
+.day:hover{transform:translateY(-4px); box-shadow:0 12px 24px rgba(238, 95, 0, 0.486)}
+.day .num{font-size:13px; color:var(--muted)}
+.day.other{opacity:.35}
+.day.today{outline:3px solid rgb(255, 81, 0); box-shadow:0 8px 24px rgba(238, 2, 2, 0.06)}
+
+/* chips */
+.chips{margin-top:auto; display:flex; flex-direction:column; gap:8px}
+.chip{display:flex; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:10px; background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.02); cursor:pointer; font-size:13px; transition:transform .12s, background .12s}
+.chip:hover{transform:translateY(-3px)}
+.chip .qty{opacity:.85; font-size:12px}
+.chip[data-cat="manga"]{border-left:4px solid #4da3ff}
+.chip[data-cat="nocturna"]{border-left:4px solid #c084fc}
+.chip[data-cat="cata"]{border-left:4px solid #68d391}
+.chip[data-cat="cafe"]{border-left:4px solid #f6c760}
+.chip[data-cat="cerveza"]{border-left:4px solid #ff9e00}
+.empty{display:grid; place-items:center; color:var(--muted); font-size:14px}
+
+/* modal */
+dialog{border-radius:14px; padding:18px; border:1px solid rgba(255,255,255,0.03); background:linear-gradient(180deg,var(--panel),var(--panel-2))}
+dialog::backdrop{background:rgba(0,0,0,0.6)}
+.modal-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px}
+.events{display:grid; gap:12px}
+.event{background:var(--panel); padding:12px; border-radius:12px; border:1px solid rgba(230, 6, 6, 0.02)}
+.event .meta{display:flex; gap:10px; flex-wrap:wrap; color:var(--muted)}
+.actions{display:flex; gap:10px; margin-top:8px}
+.tag{padding:8px 12px; border-radius:999px; background:var(--panel-2); border:1px solid rgba(255,255,255,0.02); cursor:pointer}
+.form-row{display:flex; gap:8px; margin-top:8px}
+.input{padding:8px 10px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); width:100%}
+.btn-success{background:linear-gradient(90deg,var(--brand),var(--brand-2)); border:0; padding:10px 12px; color:#0d5ae9; font-weight:700; border-radius:10px}
+/* Forzar colores claros en el contenido del modal */
+dialog h2 {color: var(--text);}
+.event h3 {color: var(--text); font-weight: 600;}
+.event p {color: var(--text); opacity: 0.9;}
+/* responsive */
+@media (max-width:900px){ .grid{grid-auto-rows:100px} .agenda-list li{font-size:13px} }
+@media (max-width:560px){ .grid{grid-auto-rows:80px} .controls{flex-direction:column; align-items:flex-start} }
+
+/* Estilos para el select y su menú desplegable */
+select {background: var(--panel-2); color: var(--text); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 12px; cursor: pointer; appearance: none; -webkit-appearance: none; -moz-appearance: none; position: relative; z-index: 1;}
+
+select:focus {outline: none; border-color: var(--brand); box-shadow: 0 0 6px rgba(124,195,255,0.5);}
+/* Opciones del desplegable */
+select option {background: var(--panel); color: var(--text); padding: 8px;}
+
+/* Hover de las opciones (en navegadores que lo permiten) */
+select option:hover {background: var(--brand); color: #000;}
+
+/* ===== Tags en el modal ===== */
+.tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  display: inline-block;
+}
+
+/* Gradientes por categoría */
+.tag[data-cat="manga"],
+.legend .item[data-cat="manga"] {
+  background: linear-gradient(135deg, #4da3ff, #80c9ff);
+}
+
+.tag[data-cat="nocturna"],
+.legend .item[data-cat="nocturna"] {
+  background: linear-gradient(135deg, #a855f7, #c084fc);
+}
+
+.tag[data-cat="cata"],
+.legend .item[data-cat="cata"] {
+  background: linear-gradient(135deg, #34d399, #6ee7b7);
+}
+
+.tag[data-cat="cafe"],
+.legend .item[data-cat="cafe"] {
+  background: linear-gradient(135deg, #f6c760, #fbbf24);
+  color: #000000;
+}
+
+.tag[data-cat="cerveza"],
+.legend .item[data-cat="cerveza"] {
+  background: linear-gradient(135deg, #ff9e00, #ffbb33);
+  color: #000;
+}
+
+/* Botones de acción */
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--panel-2);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--brand);
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.action-btn:hover {
+  background: var(--brand);
+  color: #000;
+}
+
+/* Categorías (badge con gradiente) */
+.tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+  border: none;
+}
+
+.tag[data-cat="manga"] {
+  background: linear-gradient(135deg, #4da3ff, #80c9ff);
+}
+.tag[data-cat="nocturna"] {
+  background: linear-gradient(135deg, #a855f7, #c084fc);
+}
+.tag[data-cat="cata"] {
+  background: linear-gradient(135deg, #34d399, #6ee7b7);
+}
+.tag[data-cat="cafe"] {
+  background: linear-gradient(135deg, #f6c760, #fbbf24);
+  color: #000;
+}
+.tag[data-cat="cerveza"] {
+  background: linear-gradient(135deg, #ff9e00, #ffbb33);
+  color: #000;
+}

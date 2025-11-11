@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calendario · 23 Experiencias</title>
+  <link rel="stylesheet" href="calendario.css">
+</head>
+<body>
+  <main class="wrap card" id="app">
+    <header class="title">
+      <h1>Calendario 23 Experiencias</h1>
+      <div class="controls">
+        <a class="brand" href="../index.html">🏠 Inicio</a>
+        <button class="icon" id="prev" title="Mes anterior">⟨</button>
+        <strong id="label" aria-live="polite">—</strong>
+        <button class="icon" id="next" title="Mes siguiente">⟩</button>
+        <select id="filter" aria-label="Filtrar por categoría">
+          <option value="all">Todas las categorías</option>
+        </select>
+        <button id="hoy" class="brand">Hoy</button>
+      </div>
+    </header>
+
+    <!-- AGENDA: SIEMPRE VISIBLE (arriba) -->
+    <section class="agenda-view" aria-label="Agenda rápida">
+      <h2>Próximas experiencias</h2>
+      <ul id="agenda-list" class="agenda-list" role="list"></ul>
+    </section>
+
+    <div class="legend">
+      <span class="item" data-cat="manga">Manga</span>
+      <span class="item" data-cat="nocturna">Nocturna</span>
+      <span class="item" data-cat="cata">Cata/Barista</span>
+      <span class="item" data-cat="cafe">Café</span>
+      <span class="item" data-cat="cerveza">Cerveza</span>
+    </div>
+
+    <!-- CALENDARIO: siempre visible debajo de la agenda -->
+    <section class="calendar" aria-label="Calendario mensual">
+      <div class="dow" aria-hidden="true">
+        <span>Lunes</span><span>Martes</span><span>Miércoles</span><span>Jueves</span><span>Viernes</span><span>Sábado</span><span>Domingo</span>
+      </div>
+      <div id="grid" class="grid" role="grid" aria-readonly="true"></div>
+    </section>
+  </main>
+
+  <!-- Modal: detalles y formulario de reserva -->
+  <dialog id="modal" aria-hidden="true">
+    <div class="modal-head">
+      <h2 id="modal-date">Fecha</h2>
+      <button id="close" class="icon" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="modal-body" class="events"></div>
+  </dialog>
+
+  <!-- Data + scripts -->
+  <script src="events-data.js"></script>
+  <script src="utils.js"></script>
+  <script src="reservas.js"></script>
+  <script src="script.js"></script>
+
+                                           <!--Datos de fechas reales--> 
+  <script id="events-data" type="application/json">[
+    {
+      "id":"exp-001",
+      "title":"Ruta de Cafeterías — Edición Manga",
+      "date":"2025-11-20",
+      "start":"08:00",
+      "end":"22:30",
+      "location":"Córdoba Centro",
+      "capacity":23,
+      "available":20,
+      "price":150000,
+      "category":"Café",
+      "description":"Recorrido por 23 cafeterías temáticas con actividad de lectura y juego de rol.",
+      "reserveUrl":"/reservar.php?event=exp-001"
+    },
+    {
+      "id":"exp-002",
+      "title":"Experiencia Nocturna — Café & Jazz",
+      "date":"2025-11-28",
+      "start":"21:00",
+      "end":"23:45",
+      "location":"Güemes",
+      "capacity":23,
+      "available":3,
+      "price":15000,
+      "category":"nocturna",
+      "description":"Edición íntima con maridaje dulce y música en vivo.",
+      "reserveUrl":"/reservar.php?event=exp-002"
+    },
+    {
+      "id":"exp-003",
+      "title":"Cata con Barista — Orígenes & Métodos",
+      "date":"2025-11-05",
+      "start":"18:00",
+      "end":"20:00",
+      "location":"Nueva Córdoba",
+      "capacity":23,
+      "available":16,
+      "price":18000,
+      "category":"cata",
+      "description":"Cata guiada de orígenes + V60 y Aeropress.",
+      "reserveUrl":"/reservar.php?event=exp-003"
+    },
+    {
+      "id":"exp-004",
+      "title":"Aventura cervecera — Degustaciones y compras.",
+      "date":"2025-11-14",
+      "start":"07:00",
+      "end":"21:00",
+      "location":"Nueva Córdoba",
+      "capacity":23,
+      "available":17,
+      "price":18000,
+      "category":"cerveza",
+      "description":"Aventura cervecera — Degustaciones y compras.",
+      "reserveUrl":"/reservar.php?event=exp-003"
+    }
+  ]</script>
+
+  <script>
+  (function(){
+    const TZ = 'America/Argentina/Cordoba';
+    const $ = (s,el=document)=> el.querySelector(s);
+    const $$ = (s,el=document)=> [...el.querySelectorAll(s)];
+
+    const events = JSON.parse($('#events-data').textContent);
+    const categories = Array.from(new Set(events.map(e=>e.category)));
+
+    // Estado de calendario: primer día del mes visible
+    let current = new Date();
+    current.setDate(1);
+
+    // UI refs
+    const grid = $('#grid');
+    const label = $('#label');
+    const prevBtn = $('#prev');
+    const nextBtn = $('#next');
+    const todayBtn = $('#hoy');
+    const filterSel = $('#filter');
+    const modal = $('#modal');
+    const modalDate = $('#modal-date');
+    const modalBody = $('#modal-body');
+
+    // Poblar filtro
+    for(const c of categories){
+      const opt = document.createElement('option');
+      opt.value = c; opt.textContent = c.charAt(0).toUpperCase()+c.slice(1);
+      filterSel.appendChild(opt);
+    }
+
+    // Navegación
+    prevBtn.addEventListener('click', ()=>{ current.setMonth(current.getMonth()-1); render() });
+    nextBtn.addEventListener('click', ()=>{ current.setMonth(current.getMonth()+1); render() });
+    todayBtn.addEventListener('click', ()=>{ current = new Date(); current.setDate(1); render() });
+    filterSel.addEventListener('change', render);
+
+    // Render principal
+    function render(){
+      label.textContent = new Intl.DateTimeFormat('es-AR', {month:'long', year:'numeric', timeZone:TZ}).format(current).replace(/^./, c=>c.toUpperCase());
+      grid.innerHTML = '';
+
+      const firstDay = new Date(current.getFullYear(), current.getMonth(), 1);
+      const startOffset = (firstDay.getDay()+6)%7; // Lunes=0
+      const start = new Date(firstDay); start.setDate(firstDay.getDate() - startOffset);
+
+      const selectedCat = filterSel.value;
+
+      for(let i=0;i<42;i++){
+        const day = new Date(start); day.setDate(start.getDate()+i);
+        const cell = document.createElement('div');
+        cell.className = 'day';
+
+        if(day.getMonth() !== current.getMonth()) cell.classList.add('other');
+
+        const today = new Date();
+        if(day.toDateString() === today.toDateString()) cell.classList.add('today');
+
+        const num = document.createElement('div');
+        num.className = 'num';
+        num.textContent = day.getDate();
+        cell.appendChild(num);
+
+        const list = document.createElement('div');
+        list.className = 'chips';
+
+        const ymd = fmtDate(day);
+        const todaysEvents = events
+          .filter(e => e.date === ymd && (selectedCat==='all' || e.category===selectedCat));
+
+        if(todaysEvents.length){
+          todaysEvents.forEach(e=>{
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'chip';
+            chip.dataset.cat = e.category;
+            chip.innerHTML = `<span>${escapeHtml(e.title)}</span> <span class="qty">${e.available}/${e.capacity}</span>`;
+            chip.addEventListener('click', ()=> openDayModal(day, todaysEvents));
+            list.appendChild(chip);
+          });
+        } else {
+          const empty = document.createElement('div');
+          empty.className = 'empty';
+          empty.innerHTML = '<span class="sr-only">Sin eventos</span>';
+          list.appendChild(empty);
+        }
+
+        cell.appendChild(list);
+        cell.addEventListener('click', ()=> todaysEvents.length && openDayModal(day, todaysEvents));
+        grid.appendChild(cell);
+      }
+    }
+
+    function openDayModal(day, list){
+      modalDate.textContent = new Intl.DateTimeFormat('es-AR', {weekday:'long', day:'2-digit', month:'long', year:'numeric', timeZone:TZ}).format(day).replace(/^./, c=>c.toUpperCase());
+      modalBody.innerHTML = '';
+
+      for(const e of list){
+        const card = document.createElement('article');
+        card.className = 'event';
+        const price = new Intl.NumberFormat('es-AR', {style:'currency', currency:'ARS'}).format(e.price || 0);
+
+        card.innerHTML = `
+          <h3 style="margin:0">${escapeHtml(e.title)}</h3>
+          <div class="meta">
+            <span>🕒 ${e.start || '—'}–${e.end || '—'} hs</span>
+            <span>📍 ${escapeHtml(e.location || 'A confirmar')}</span>
+            <span>👥 ${e.available}/${e.capacity} lugares</span>
+            <span>💳 ${price}</span>
+            <span class="tag">${escapeHtml(labelCat(e.category))}</span>
+          </div>
+          <p class="muted" style="margin:.25rem 0 0">${escapeHtml(e.description || '')}</p>
+          <div class="actions">
+            <a class="tag" target="_blank" rel="noopener" href="${googleLink(e)}">Añadir a Google Calendar</a>
+            <a class="tag" href="${e.reserveUrl || '#'}">Reservar</a>
+          </div>
+        `;
+        modalBody.appendChild(card);
+      }
+      if(typeof modal.showModal === 'function') modal.showModal();
+      else modal.setAttribute('open','true');
+    }
+
+    $('#close').addEventListener('click', ()=>{ modal.close(); });
+
+    function fmtDate(d){
+      const y=d.getFullYear(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0');
+      return `${y}-${m}-${day}`;
+    }
+
+    function labelCat(c){
+      if(c==='manga') return 'Manga';
+      if(c==='nocturna') return 'Nocturna';
+      if(c==='cata') return 'Cata/Barista';
+      if(c==='cervezas') return 'Cervezas';
+      if(c==='café') return 'Café';
+      if(c==='convecciones') return 'Convecciones';
+      return c;
+    }
+
+    function googleLink(e){
+      const s = gDate(e.date, e.start);
+      const end = gDate(e.date, e.end);
+      const url = new URL('https://calendar.google.com/calendar/render');
+      url.searchParams.set('action','TEMPLATE');
+      url.searchParams.set('text', e.title);
+      url.searchParams.set('dates', `${s}/${end}`);
+      url.searchParams.set('details', e.description || '23 Experiencias');
+      url.searchParams.set('location', e.location || 'Córdoba');
+      url.searchParams.set('trp','false');
+      return url.toString();
+    }
+
+    function gDate(dateStr, timeStr){
+      const [Y,M,D] = dateStr.split('-').map(Number);
+      const [h,m] = (timeStr||'00:00').split(':').map(Number);
+      // Formato local (sin Z) para que Google lo interprete en horario de Argentina
+      return `${Y}${String(M).padStart(2,'0')}${String(D).padStart(2,'0')}T${String(h).padStart(2,'0')}${String(m).padStart(2,'0')}00`;
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+    }
+    
+
+    // Arrancar
+    render();
+  })();
+  </script>
+</body>
+</html>

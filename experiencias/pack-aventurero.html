@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pack Fiestero – 23 Experiencias</title>
+  <link rel="stylesheet" href="css/pack-aventurero.css">
+  <link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+  <header>
+    <a href="../index.html" class="btn-volver">← Volver</a>
+    <h1>Pack Aventurero</h1>
+  </header>
+
+  <main class="detalle-pack">
+    <img src="../experiencias/img/pack-aventurero.jpg" alt="Pack Básico" class="img-pack">
+    <div class="info-pack">
+      <h2>Incluye:</h2>
+      <ul>
+        <li>1 recorrido por canchas</li>
+        <li>1 bebida a elección</li>
+        <li>1 picada </li>
+      </ul>
+      <h3>Precio: $55.000</h3>
+      <!--formulario de compra-->
+
+      <section class="formulario-compra">
+  <h2>Finalizar Compra</h2>
+  <form id="form-compra" action="procesar_compra.php" method="POST">
+    
+    <!-- Fecha de experiencia -->
+    <label for="fecha">📅 Fecha de experiencia</label>
+    <input type="date" id="fecha" name="fecha" required>
+    
+    <!-- Cantidad de personas -->
+    <label for="personas">👥 Cantidad de personas</label>
+    <input type="number" id="personas" name="personas" min="1" max="23" required>
+    
+    <!-- Método de pago -->
+    <label for="pago">💳 Método de pago</label>
+    <select id="pago" name="pago" required>
+      <option value="">-- Selecciona un método --</option>
+      <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+      <option value="transferencia">Transferencia Bancaria</option>
+      <option value="mercadopago">MercadoPago</option>
+      <option value="paypal">PayPal</option>
+    </select>
+    
+    <!-- Botón de enviar -->
+    <button type="submit" class="btn-comprar">Confirmar Compra</button>
+  </form>
+</section>
+    </div>
+  </main>
+</section>
+
+
+</body>
+</html>

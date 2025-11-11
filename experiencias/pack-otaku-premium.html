@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pack Otaku Premium – 23 Experiencias</title>
+  <link rel="stylesheet" href="css/pack-otaku-premium.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header>
+    <a href="../index.html" class="btn-volver">← Volver</a>
+    <h1>Pack Otaku Premium</h1>
+  </header>
+
+  <main class="detalle-pack">
+    <img src="../experiencias/img/pack-otaku.png" alt="Pack Otaku Premium" class="img-pack">
+    <div class="info-pack">
+      <h2>Incluye:</h2>
+      <ul>
+        <li>Recorrido por cafeterías de temática japonesa</li>
+        <li>Set de bebidas inspiradas en anime</li>
+        <li>Postre exclusivo edición limitada</li>
+        <li>Entrada a mini-exposición de manga</li>
+        <li>Souvenir coleccionable</li>
+      </ul>
+      <h3>Precio: $150.000</h3>
+
+      <!--Formulario de compra -->
+     <section class="formulario-compra">
+  <h2>Finalizar Compra</h2>
+  <form id="form-compra" action="procesar_compra.php" method="POST">
+    
+    <!-- Fecha de experiencia -->
+    <label for="fecha">📅 Fecha de experiencia</label>
+    <input type="date" id="fecha" name="fecha" required>
+    
+    <!-- Cantidad de personas -->
+    <label for="personas">👥 Cantidad de personas</label>
+    <input type="number" id="personas" name="personas" min="1" max="23" required>
+    
+    <!-- Método de pago -->
+    <label for="pago">💳 Método de pago</label>
+    <select id="pago" name="pago" required>
+      <option value="">-- Selecciona un método --</option>
+      <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+      <option value="transferencia">Transferencia Bancaria</option>
+      <option value="mercadopago">MercadoPago</option>
+      <option value="paypal">PayPal</option>
+    </select>
+    
+    <!-- Botón de enviar -->
+    <button type="submit" class="btn-comprar">Confirmar Compra</button>
+  </form>
+</section>
+
+    </div>
+  </main>
+                                                  <!--TARJETA-->
+ <h2 class="titulo-seccion">OTROS PACKS QUE TE PUEDEN INTERESAR</h2>                                               
+<section id="paquetes" class="paquetes-container">
+  <div class="tarjeta pack-basico">
+    <img src="../experiencias/img/pack-cervecero.jpg" alt="Pack Básico 23 Experiencias">
+    <h3>Pack Premium Cervecero</h3>
+    <p>Un trago, dos charlas, tres amigos nuevos.</p>
+   <!-- <a href="experiencias/pack-basico.html" class="btn-tarjeta">Seleccionar</a>-->
+  </div>
+
+  <div class="tarjeta pack-otaku">
+    <img src="../experiencias/img/pack-futbolero.jpg" alt="Pack Otaku Premium 23 Experiencias">
+    <h3>Pack Premium Futbolero</h3>
+    <p>Los estadios más emblematicos.</p>
+   <!-- <a href="experiencias/pack-otaku.html" class="btn-tarjeta">Seleccionar</a>-->
+  </div>
+
+  <div class="tarjeta pack-literario">
+    <img src="../experiencias/img/pack-aventurero.jpg" alt="Pack Literario 23 Experiencias">
+    <h3>Pack Premium Aventurero</h3>
+    <p>Un viaje lleno de aventura, diversión y algo más.</p>
+    <!--<a href="experiencias/pack-literario.html" class="btn-tarjeta">Seleccionar</a>-->
+  </div>
+</section>
+
+</body>
+</html>
