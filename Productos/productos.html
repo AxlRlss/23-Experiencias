@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda | 23 Experiencias</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Tienda 23 Experiencias</h1>
+    <nav>
+      <a href="../index.html" class="btn-volver">🏠 Volver al inicio</a>
+    </nav>
+  </header>
+
+  <!-- Botón flotante del carrito -->
+  <button id="fab-carrito" class="fab-carrito" aria-label="Abrir carrito">
+    🛒 <span id="badge" class="badge">0</span>
+  </button>
+
+  <!-- Capa oscura al abrir carrito -->
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- Contenido desplazable (la grilla se “corre” en desktop cuando se abre el carrito) -->
+  <main id="content" class="content">
+    <section class="productos-grid">
+      <!-- Llavero -->
+      <article class="producto-card">
+        <img src="../Productos/img/llavero.png" alt="Llavero 23 Experiencias" />
+        <h3>Llavero exclusivo</h3>
+        <p class="precio">$2.500</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Llavero', 2500)">Agregar</button>
+      </article>
+
+      <!-- Galletas -->
+      <article class="producto-card">
+        <img src="../Productos/img/galleta.png" alt="Galletas temáticas" />
+        <h3>Galletas temáticas</h3>
+        <p class="precio">$2.700</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Galletas', 2700)">Agregar</button>
+      </article>
+
+      <!-- Box de Té -->
+      <article class="producto-card">
+        <img src="../Productos/img/box.png" alt="Box de Té Japonés" />
+        <h3>Box de Té Japonés</h3>
+        <p class="precio">$49.000</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Box de Té', 49000)">Agregar</button>
+      </article>
+
+      <!-- Taza -->
+      <article class="producto-card">
+        <img src="../Productos/img/23xp.png" alt="Taza 23 Experiencias" />
+        <h3>Taza oficial</h3>
+        <p class="precio">$10.000</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Taza', 10000)">Agregar</button>
+      </article>
+
+      <!-- Stickers -->
+      <article class="producto-card">
+        <img src="../Productos/img/stiker-bizcochuelo.png" alt="Stickers exclusivos" />
+        <h3>Pack Stickers</h3>
+        <p class="precio">$1.000</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Stickers', 1000)">Agregar</button>
+      </article>
+
+      <!-- Café de autor (edición limitada 23 Experiencias) -->
+      <article class="producto-card">
+        <img src="../Productos/img/cafe-de-autor.png" alt="Café de autor (edición limitada 23 Experiencias)" />
+        <h3>Café de autor (edición limitada 23 Experiencias)</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Cafe', 900)">Agregar</button>
+      </article>
+
+      <!-- Velas aromáticas-->
+      <article class="producto-card">
+        <img src="../Productos/img/velas-aromaticas.png" alt="Velas aromáticas" />
+        <h3>Velas aromáticas</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Velas', 900)">Agregar</button>
+      </article>
+
+      <!-- Mini box de dulces artesanales -->
+      <article class="producto-card">
+        <img src="../Productos/img/mini box de dulces.png" alt="Moni box de dulces artesanales únicos" />
+        <h3>Mini box de dulces artesanales</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('MiniBox dulces', 900)">Agregar</button>
+      </article>
+
+      <!-- Marcapáginas ilustrados-->
+      <article class="producto-card">
+        <img src="../Productos/img/marcapagina.png" alt="Marcapáginas personalizado" />
+        <h3>Marcapáginas ilustrados</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Marcapáginas', 900)">Agregar</button>
+      </article>
+
+      <!-- Libreta temática 23 Experiencias -->
+      <article class="producto-card">
+        <img src="../Productos/img/libreta.png" alt="Libreta" />
+        <h3>Libreta temática 23 Experiencias</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Libreta', 900)">Agregar</button>
+      </article>
+
+      <!-- Pósters coleccionables -->
+      <article class="producto-card">
+        <img src="../Productos/img/posters.png" alt="Pósters exclusivos" />
+        <h3>Pósters coleccionables</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Pósters', 900)">Agregar</button>
+      </article>
+
+      <!-- Kit ritual de café + lectura -->
+      <article class="producto-card">
+        <img src="../Productos/img/kitdepaz" alt="Kit de paz" />
+        <h3>Kit ritual de café + lectura</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Kit de paz', 900)">Agregar</button>
+      </article>
+
+      <!-- Cajas sorpresa -->
+      <article class="producto-card">
+        <img src="../Productos/img/caja-misteriosa.png" alt="Caja Sorpresa" />
+        <h3>Cajas sorpresa</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('sorpresa', 900)">Agregar</button>
+      </article>
+
+      <!-- Paraguas naranja oficial -->
+      <article class="producto-card">
+        <img src="../Productos/img/paraguas.png" alt="Paraguas Oficial" />
+        <h3>Paraguas naranja oficial</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Paraguas', 900)">Agregar</button>
+      </article>
+
+      <!-- Bolsa tote bag ilustrada -->
+      <article class="producto-card">
+        <img src="../Productos/img/bolsa-tote-bag.png" alt="Bolsa tote bag" />
+        <h3>Bolsa tote bag ilustrada</h3>
+        <p class="precio">$900</p>
+        <button class="btn-agregar" onclick="agregarAlCarrito('Bolsa', 900)">Agregar</button>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Carrito -->
+  <aside id="carrito" class="carrito" aria-label="Carrito de compras">
+    <header class="carrito-header">
+      <h2>🛒 Tu carrito</h2>
+      <button id="btn-cerrar" class="btn-cerrar" aria-label="Cerrar carrito">✕</button>
+    </header>
+
+    <ul id="lista-carrito" class="lista-carrito"></ul>
+
+    <div class="carrito-footer">
+      <p class="total">Total: $<span id="total">0</span></p>
+      <label for="pago" class="lbl-pago">Método de pago</label>
+      <select id="pago" class="select-pago">
+        <option value="tarjeta">💳 Tarjeta</option>
+        <option value="efectivo">💵 Efectivo</option>
+        <option value="mercadopago">📱 MercadoPago</option>
+      </select>
+      <button class="btn-comprar" onclick="finalizarCompra()">Finalizar compra</button>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>

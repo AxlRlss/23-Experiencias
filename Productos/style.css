@@ -1,0 +1,166 @@
+:root{
+  --naranja:#ff6b00;
+  --naranja-2:#ff914d;
+  --crema:#fff9f2;
+  --tinta:#333;
+  --sombra:rgba(0,0,0,.1);
+}
+
+*{box-sizing:border-box}
+
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;
+  background:var(--crema);
+  color:var(--tinta);
+}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  position:sticky; top:0; z-index:5;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem;
+  padding:1rem 1.25rem;
+  background:linear-gradient(90deg,var(--naranja),var(--naranja-2));
+  color:#fff;
+}
+.topbar h1{margin:0; font-size:1.25rem}
+.btn-volver{
+  color:#fff; text-decoration:none; padding:.45rem .75rem; border-radius:10px;
+  background:rgba(0,0,0,.25);
+}
+
+/* ---------- FAB carrito ---------- */
+.fab-carrito{
+  position:fixed; right:16px; bottom:16px; z-index:7;
+  border:none; border-radius:28px; padding:.7rem 1rem;
+  background:var(--naranja); color:#fff; cursor:pointer;
+  box-shadow:0 8px 18px rgba(255,107,0,.35);
+  display:flex; align-items:center; gap:.5rem; font-weight:600;
+  transition:transform .15s ease, filter .15s ease;
+}
+.fab-carrito:hover{ transform:translateY(-2px); filter:brightness(1.05) }
+.badge{
+  background:#fff; color:var(--naranja); font-weight:700;
+  min-width:22px; height:22px; border-radius:999px; display:inline-grid; place-items:center;
+  padding:0 6px; font-size:.85rem;
+}
+
+/* ---------- Overlay ---------- */
+.overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.35); backdrop-filter:saturate(120%) blur(2px);
+  opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:6;
+}
+.overlay.show{ opacity:1; pointer-events:auto }
+
+/* ---------- Contenido / Grilla ---------- */
+.content{ transition:margin-right .35s ease }
+.productos-grid{
+  display:grid; gap:1.25rem; padding:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+
+.producto-card{
+  background:#fff; border-radius:16px; padding:1rem; text-align:center;
+  box-shadow:0 6px 14px var(--sombra);
+  transition:transform .2s ease, box-shadow .2s ease;
+  animation:fadeIn .5s ease;
+}
+.producto-card:hover{
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:0 12px 26px rgba(255,107,0,.35);
+}
+.producto-card img{ max-width:120px; margin-bottom:1rem }
+.precio{ color:var(--naranja); font-weight:700 }
+.btn-agregar{background:var(--naranja); color:#fff; border:none; border-radius:20px;padding:.6rem 1rem; cursor:pointer; font-weight:600; transition:transform .15s ease, background .2s;}
+.btn-agregar:hover{ background:var(--naranja-2); transform:scale(1.05) }
+                                                /*boton agregar*/
+.productos {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 20px;padding: 20px;}
+.producto { background: #1a1a1d;border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.3s;}
+.producto:hover { transform: translateY(-5px);}
+
+/* Botón agregar con efecto latido */
+.btn-agregar {margin-top: 15px; padding: 10px 20px; background: #ff9900; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; color: #000; cursor: pointer; animation: pulse 2s infinite;transition: background 0.3s;}
+.btn-agregar:hover { background: #ffb84d;}
+
+/* Keyframes para el efecto de latido */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,153,0, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(255,153,0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255,153,0, 0);
+  }
+}
+
+/* ---------- Carrito (desktop: panel lateral) ---------- */
+.carrito{
+  position:fixed; top:0; right:-380px; width:360px; height:100%;
+  background:#fff; border-left:4px solid var(--naranja);
+  box-shadow:-6px 0 24px var(--sombra); z-index:8;
+  display:flex; flex-direction:column; transition:right .35s ease;
+}
+body.cart-open-desktop .carrito{ right:0 }
+body.cart-open-desktop .content{ margin-right:360px }
+
+.carrito-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1rem; background:#fff4ea; border-bottom:1px solid #ffe1ca;
+}
+.btn-cerrar{
+  border:none; background:transparent; font-size:1.25rem; cursor:pointer;
+  padding:.25rem .4rem; border-radius:8px;
+}
+.btn-cerrar:hover{ background:#ffe1ca }
+
+.lista-carrito{
+  list-style:none; margin:0; padding:1rem; overflow:auto; flex:1;
+}
+.lista-carrito li{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:.75rem; margin:.5rem 0; padding:.6rem .7rem;
+  background:#fdf2e9; border-radius:10px; animation:fadeIn .25s ease;
+}
+.btn-eliminar{
+  background:#ff3b3b; color:#fff; border:none; border-radius:8px;
+  padding:.35rem .55rem; cursor:pointer; font-weight:700;
+}
+.btn-eliminar:hover{ filter:brightness(.95) }
+
+.carrito-footer{ padding:1rem; border-top:1px solid #ffe1ca }
+.total{ font-weight:700; margin:.25rem 0 .75rem }
+.lbl-pago{ display:block; font-size:.9rem; margin-bottom:.25rem }
+.select-pago{
+  width:100%; padding:.55rem .6rem; border-radius:10px; border:1px solid #ffd1b0; margin-bottom:.75rem;
+}
+.btn-comprar{
+  width:100%; padding:.7rem; border:none; border-radius:12px; font-weight:700; color:#fff;
+  background:linear-gradient(90deg,var(--naranja),var(--naranja-2));
+  cursor:pointer; box-shadow:0 10px 20px rgba(255,107,0,.3);
+}
+.btn-comprar:hover{ filter:brightness(1.05) }
+
+
+/* ---------- Mobile: bottom sheet ---------- */
+@media (max-width: 768px){
+  body.cart-open-desktop .content{ margin-right:0 } /* sin empuje en mobile */
+
+  .carrito{
+    right:0; width:100%; height:75vh;
+    bottom:-75vh; top:auto; border-left:none; border-top:4px solid var(--naranja);
+    border-top-left-radius:16px; border-top-right-radius:16px;
+    box-shadow:0 -10px 30px var(--sombra);
+    transition:bottom .35s ease;
+  }
+  .carrito.open{ bottom:0 }
+}
+
+/* ---------- Anim ---------- */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px)}
+  to{opacity:1; transform:translateY(0)}
+}
