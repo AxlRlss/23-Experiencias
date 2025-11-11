@@ -1,0 +1,156 @@
+:root {
+  --fondo: #0d0d0f;
+  --fondo-sec: #16161a;
+  --rojo-sakura: #e2736b;
+  --dorado-suave: #f7d98c;
+  --texto: #f4f4f6;
+  --gris: #a0a0a0;
+  --fuente: "Poppins", "Noto Sans JP", sans-serif;
+}
+
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--fondo-sec);
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.topbar h1 {
+  font-size: 20px;
+  color: var(--dorado-suave);
+}
+
+.volver {
+  color: var(--rojo-sakura);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.volver:hover {
+  color: var(--dorado-suave);
+}
+
+/* Intro */
+.intro {
+  position: relative;
+  background: url("../img/fondo-sakura.jpg") center/cover no-repeat;
+  color: var(--texto);
+  padding: 80px 20px;
+  text-align: center;
+}
+.intro .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(13,13,15,0.8);
+}
+.intro .content {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  z-index: 2;
+}
+.intro h2 {
+  font-size: 28px;
+  color: var(--dorado-suave);
+  margin-bottom: 16px;
+}
+.intro p {
+  margin: 12px 0;
+  font-size: 16px;
+}
+
+/* Bloques */
+.secciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 40px;
+}
+
+.bloque {
+  background: var(--fondo-sec);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.bloque:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.bloque h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: var(--rojo-sakura);
+}
+.bloque p, .bloque li {
+  color: var(--gris);
+  font-size: 15px;
+}
+.bloque ul {
+  list-style: none;
+  padding-left: 10px;
+}
+.bloque ul li::before {
+  content: "• ";
+  color: var(--dorado-suave);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: var(--gris);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer {
+  background-color: #fcebea;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 2px solid #ffc5ba;
+}
+
+.footer-contenido {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-marca {
+  font-size: 0.95rem;
+  color: #b74d4d;
+  margin-bottom: 1rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer-redes a {
+  display: inline-block;
+  margin: 0 0.8rem;
+  transition: transform 0.3s;
+}
+
+.footer-redes a:hover {
+  transform: scale(1.2);
+}
+
+.footer-redes img {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(1px 1px 1px rgb(230, 103, 0));
+}
